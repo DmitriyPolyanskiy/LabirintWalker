@@ -9,6 +9,7 @@ namespace LabirintWalker
     public partial class Form1 : Form
     {
         public enum PType { wall, free, finish }//полезно разделять точки трёх типов 
+        private Point lastLocation;
         private Bitmap image;
         private Graphics graphics;
         private Pen dot;
@@ -17,6 +18,7 @@ namespace LabirintWalker
         private int clicked;// 2 - выбирается конечная точка, 1 - начальная, 0 - всё выбрали
         private double k_x = 1, k_y = 1; //коэффиценты сжатия картинки 
         private bool found = false, uploaded = false;
+        private long n;
 
         public Form1()
         {
@@ -87,6 +89,8 @@ namespace LabirintWalker
                     edge.Add(map[X, Y]);
                     startButton.Enabled = true;
                     startButton.BackColor = SystemColors.GradientActiveCaption;
+                    startButton.ForeColor = SystemColors.ControlText;
+                    n = 0;
                     sign.Text = "Начните поиск";
                 }                
             }
@@ -94,39 +98,48 @@ namespace LabirintWalker
 
         public void Rec()
         {
-            if (!found)               
+            n++;
+            if (n < 4200 && edge.Count > 0)
             {
-                foreach (Pathel path in edge.ToArray())
+                if (!found)
                 {
-                    int x = path.X, y = path.Y;
-                    if (x >= 1 && x < image.Width - 1 && y >= 1 && y < image.Height - 1)
+                    foreach (Pathel path in edge.ToArray())
                     {
-                        edge.Remove(map[x, y]);
-                        for (int i = -1; i <= 1; i++)
+                        int x = path.X, y = path.Y;
+                        if (x >= 1 && x < image.Width - 1 && y >= 1 && y < image.Height - 1)
                         {
-                            for (int j = -1; j <= 1; j++)
+                            edge.Remove(map[x, y]);
+                            for (int i = -1; i <= 1; i++)
                             {
-                                switch (map[x + i, y + j].Type)
+                                for (int j = -1; j <= 1; j++)
                                 {
-                                    case PType.finish:
-                                        found = true;
-                                        map[x + i, y + j].Type = PType.wall;
-                                        DrawPath(x, y);
-                                        break;
-                                    case PType.free:
-                                        map[x + i, y + j].Type = PType.wall;
-                                        map[x + i, y + j].X_ = x;
-                                        map[x + i, y + j].Y_ = y;
-                                        edge.Add(map[x + i, y + j]);
-                                        break;
-                                    default:
-                                        break;
+                                    switch (map[x + i, y + j].Type)
+                                    {
+                                        case PType.finish:
+                                            found = true;
+                                            map[x + i, y + j].Type = PType.wall;
+                                            DrawPath(x, y);
+                                            break;
+                                        case PType.free:
+                                            map[x + i, y + j].Type = PType.wall;
+                                            map[x + i, y + j].X_ = x;
+                                            map[x + i, y + j].Y_ = y;
+                                            edge.Add(map[x + i, y + j]);
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             }
                         }
                     }
+                    Rec();
                 }
-                Rec();
+            }
+            else
+            {
+                MessageBox.Show("Путь либо невозможный, либо слишком длинный\nПопробуйте указать снова");
+                Preparation();
             }
         }
 
@@ -157,8 +170,28 @@ namespace LabirintWalker
         {
             sign.Text = "Думаю";
             startButton.Enabled = false;
-            startButton.BackColor = SystemColors.Control;
+            startButton.BackColor = Color.FromArgb(64,64,64);
+            startButton.ForeColor = Color.Silver;
             Rec();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastLocation.X;
+                this.Top += e.Y - lastLocation.Y;
+            }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastLocation = new Point(e.X, e.Y);
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -17,3 +17,13 @@ C:\Users\Дмитрий\YandexDisk-pigeon.mail2.0@ya.ru\Программиров
 C:\Users\Дмитрий\YandexDisk-pigeon.mail2.0@ya.ru\Программирование\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.Properties.Resources.resources
 C:\Users\Дмитрий\YandexDisk-pigeon.mail2.0@ya.ru\Программирование\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.csproj.GenerateResource.cache
 C:\Users\Дмитрий\YandexDisk-pigeon.mail2.0@ya.ru\Программирование\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\bin\Debug\LabirintWalker.exe.config
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\bin\Debug\LabirintWalker.exe
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\bin\Debug\LabirintWalker.pdb
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.csprojAssemblyReference.cache
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.Form1.resources
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.Properties.Resources.resources
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.csproj.GenerateResource.cache
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.exe
+C:\Users\Дмитрий\Documents\GitHub\LabirintWalker\LabirintWalker\obj\Debug\LabirintWalker.pdb
